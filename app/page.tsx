@@ -1,31 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import Header from '../components/Header';
-
 const Home: React.FC = () => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
-
-  useEffect(() => {
-    const storedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(storedDarkMode);
-  }, []);
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (darkMode) {
-      root.classList.add('dark');
-      localStorage.setItem('darkMode', 'true');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('darkMode', 'false');
-    }
-  }, [darkMode]);
-
-  const toggleDarkMode = () => {
-    setDarkMode(prevMode => !prevMode);
-  };
-
   return (
     <div className="min-h-screen">
       <main className="flex flex-col items-center justify-center p-8">
