@@ -13,7 +13,7 @@ const SidebarSection: React.FC<SidebarSectionProps> = ({ title, items }) => {
   return (
     <div className="mb-4">
       <h2
-        className="text-sm font-bold flex items-center justify-between cursor-pointer"
+        className="text-sm font-bold flex items-center justify-between cursor-pointer px-2"
         onClick={() => setIsOpen(!isOpen)}
       >
         {title}
