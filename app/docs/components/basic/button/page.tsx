@@ -55,7 +55,7 @@ const ButtonPage: React.FC = () => {
           label: "Keşfet"
         }, {
           title: "Şeffaf (Transparent) Buton",
-          code: `<Button variant='transparent'>Keşfet</Button>`,
+          code: `<Button variant="transparent">Keşfet</Button>`,
           buttonClass: "bg-transparent border border-gray-600 text-gray-800 px-6 py-3 rounded",
           label: "Keşfet"
         }, {
@@ -65,7 +65,7 @@ const ButtonPage: React.FC = () => {
           label: "Giriş Yap"
         }, {
           title: "Metin Butonu (Text Button)",
-          code: `<Button variant='text'>Tüm Kampanyaları Göster</Button>`,
+          code: `<Button variant="text">Tüm Kampanyaları Göster</Button>`,
           buttonClass: "text-red-500 px-6 py-3",
           label: "Tüm Kampanyaları Göster"
         }].map(({ title, code, buttonClass, disabled, label }, index) => (
