@@ -68,7 +68,7 @@ const AlertPage: React.FC = () => {
           },
           {
             title: "Yükseklik Sınırlama İle Kullanımı",
-            code: `<Alert type="warning">WARNING</Alert>`,
+            code: `<Alert type="warning" heightLimit>WARNING</Alert>`,
             alertClass:
               "flex gap-6 border-2 border-dashed border-yellow-500 p-[12px_15px] text-[12px]",
             iconClass: "text-blue-500 text-lg",
