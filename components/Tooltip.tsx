@@ -2,41 +2,54 @@ import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-export type TooltipPosition = "top" | "bottom" | "left" | "right" | "top-right" | "top-left" | "bottom-right" | "bottom-left";
+export type TooltipPosition =
+  | "top"
+  | "bottom"
+  | "left"
+  | "right"
+  | "top-right"
+  | "top-left"
+  | "bottom-right"
+  | "bottom-left";
 export type TooltipColor = "dark" | "light";
 
 type TooltipProps = {
-    id: string;
-    color?: TooltipColor;
-    position?: TooltipPosition;
-    content?: React.ReactNode
-}
- 
-export const Tooltip: React.FC<TooltipProps> = ({ id, color="dark", position="top", content }) => {
+  id: string;
+  color?: TooltipColor;
+  position?: TooltipPosition;
+  content?: React.ReactNode;
+};
+
+export const Tooltip: React.FC<TooltipProps> = ({
+  id,
+  color = "dark",
+  position = "top",
+  content,
+}) => {
   const tooltip = useRef(null);
   const tooltipPosition = position;
   const tooltipColor = color;
- 
+
   const [open, setOpen] = useState(false);
- 
+
   const mouseEnter = () => {
     setOpen(true);
   };
- 
+
   const mouseLeave = () => {
     setOpen(false);
   };
- 
+
   useEffect(() => {
     const element =
       document.querySelector(`[data-tooltip="${id}"]`) ??
       document.querySelector(`.${id}`);
- 
+
     if (element) {
       element.addEventListener("mouseenter", mouseEnter);
       element.addEventListener("mouseleave", mouseLeave);
     }
- 
+
     return () => {
       if (element) {
         element.removeEventListener("mouseover", mouseEnter);
@@ -44,7 +57,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ id, color="dark", position="to
       }
     };
   }, []);
- 
+
   useEffect(() => {
     if (open && tooltip.current) {
       const element =
@@ -52,10 +65,10 @@ export const Tooltip: React.FC<TooltipProps> = ({ id, color="dark", position="to
         document.querySelector(`.${id}`);
       const elementBound = element?.getBoundingClientRect();
       const tooltipBound = tooltip.current?.getBoundingClientRect();
- 
+
       let top = 0;
       let left = 0;
- 
+
       if (tooltipPosition === "top") {
         top = elementBound!.top - tooltipBound.height - 10;
         left =
@@ -63,13 +76,13 @@ export const Tooltip: React.FC<TooltipProps> = ({ id, color="dark", position="to
           tooltipBound!.width / 2 +
           elementBound!.width / 2;
       }
- 
+
       if (tooltipPosition === "bottom") {
         top = elementBound!.top + elementBound!.height + 10;
         left =
           elementBound!.left - tooltipBound.width / 2 + elementBound!.width / 2;
       }
- 
+
       if (tooltipPosition === "left") {
         top =
           elementBound!.top -
@@ -77,7 +90,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ id, color="dark", position="to
           elementBound!.height / 2;
         left = elementBound!.left - tooltipBound.width - 10;
       }
- 
+
       if (tooltipPosition === "right") {
         top =
           elementBound!.top -
@@ -85,34 +98,34 @@ export const Tooltip: React.FC<TooltipProps> = ({ id, color="dark", position="to
           elementBound!.height / 2;
         left = elementBound!.right + 10;
       }
- 
+
       if (tooltipPosition === "top-right") {
         top = elementBound!.top;
         left = elementBound!.right + 10;
       }
- 
+
       if (tooltipPosition === "top-left") {
         top = elementBound!.top;
         left = elementBound!.left - tooltipBound.width - 10;
       }
- 
+
       if (tooltipPosition === "bottom-right") {
         top = elementBound!.bottom - tooltipBound.height;
         left = elementBound!.right + 10;
       }
- 
+
       if (tooltipPosition === "bottom-left") {
         top = elementBound!.bottom - tooltipBound.height;
         left = elementBound!.left - tooltipBound.width - 10;
       }
- 
+
       tooltip.current.style.top = `${top + window.scrollY}px`;
       tooltip.current.style.left = `${left}px`;
     }
   }, [open, id, tooltipPosition]);
- 
+
   if (!open) return <></>;
- 
+
   return createPortal(
     <div
       ref={tooltip}
@@ -132,7 +145,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ id, color="dark", position="to
       )}
     >
       {content}
- 
+
       <div
         className={clsx(
           "absolute w-0 h-0 border-4 border-transparent",

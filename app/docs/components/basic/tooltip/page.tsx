@@ -1,8 +1,8 @@
 "use client";
  
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
-import { Tooltip } from "../../../../components/Tooltip";
+import { Tooltip } from "../../../../../components/Tooltip";
  
 const TooltipPage: React.FC = () => {
   const [hydrated, setHydrated] = useState(false);
@@ -20,7 +20,10 @@ const TooltipPage: React.FC = () => {
       <h1 className="text-4xl font-extrabold mb-6 text-gray-800">
         Tooltip Bileşeni
       </h1>
-      <p className="text-gray-600 mb-6 text-lg">Tooltip bileşeni,</p>
+      <p className="text-gray-600 mb-6 text-lg">Tooltip, kullanıcı fareyle bir elementin üzerine geldiğinde ek bilgi veya açıklama sunan küçük bir kutudur. Genellikle butonlar, ikonlar veya bağlantılar üzerinde kullanılır. Kullanıcı deneyimini artırmak için farklı stiller ve ikon
+        desteğiyle özelleştirilebilir.
+
+</p>
  
       <h2 className="text-2xl font-bold mb-4 text-gray-700">Kullanım</h2>
       <div className="bg-gray-100 p-4 rounded-lg">
