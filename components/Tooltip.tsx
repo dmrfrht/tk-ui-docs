@@ -2,10 +2,13 @@ import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
+export type TooltipPosition = "top" | "bottom" | "left" | "right" | "top-right" | "top-left" | "bottom-right" | "bottom-left";
+export type TooltipColor = "dark" | "light";
+
 type TooltipProps = {
     id: string;
-    color?: "dark" | "light";
-    position?: "top" | "bottom" | "right" | "left" | "top-right" | "top-left" | "bottom-right" | "bottom-left";
+    color?: TooltipColor;
+    position?: TooltipPosition;
     content?: React.ReactNode
 }
  
