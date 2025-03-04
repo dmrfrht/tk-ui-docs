@@ -81,14 +81,18 @@ const ButtonPage: React.FC = () => {
           },
           {
             title: "Metin Butonunun Sonda İkon ile kullanımı",
-            code: `<Button variant="text">Tüm Kampanyaları Göster</Button>`,
+            code: `<Button variant="text" suffixIcon={<BsChevronDoubleRight />}>
+Tüm Kampanyaları Göster
+</Button>`,
             label: "Tüm Kampanyaları Göster",
             variant: "text",
             suffixIcon: <BsChevronDoubleRight />,
           },
           {
             title: "Metin Butonunun Başta İkon ile kullanımı",
-            code: `<Button variant="text">Tüm Kampanyaları Göster</Button>`,
+            code: `<Button variant="text" prefixIcon={<BsChevronDoubleLeft />}>
+Tüm Kampanyaları Göster
+</Button>`,
             label: "Tüm Kampanyaları Göster",
             variant: "text",
             prefixIcon: <BsChevronDoubleLeft />,
