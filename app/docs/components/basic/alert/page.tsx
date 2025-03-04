@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { BsInfoCircleFill } from "react-icons/bs";
+import Alert from "../../../../../components/tk-ui/Alert";
 
 const AlertPage: React.FC = () => {
   const [hydrated, setHydrated] = useState(false);
@@ -45,63 +46,46 @@ const AlertPage: React.FC = () => {
           {
             title: "Varsayılan (Hata) Kullanım",
             code: `<Alert type="error">Hata</Alert>`,
-            alertClass:
-              "flex gap-6 border-2 border-dashed border-yellow-500 p-[12px_15px] text-[12px]",
-            iconClass: "text-red-500 text-lg",
-            label: "ERROR",
+            type: "error",
+            children: "ERROR",
           },
           {
             title: "Uyarı Kullanımı",
             code: `<Alert type="warning">Uyarı</Alert>`,
-            alertClass:
-              "flex gap-6 border-2 border-dashed border-yellow-500 p-[12px_15px] text-[12px]",
-            iconClass: "text-yellow-500 text-lg",
-            label: "WARNING",
+            type: "warning",
+            children: "WARNING",
           },
           {
             title: "Bilgilendirme Kullanımı",
             code: `<Alert type="information">Bilgi</Alert>`,
-            alertClass:
-              "flex gap-6 border-2 border-dashed border-yellow-500 p-[12px_15px] text-[12px]",
-            iconClass: "text-blue-500 text-lg",
-            label: "INFORMATION",
+            type: "information",
+            children: "INFORMATION",
           },
           {
             title: "Yükseklik Sınırlama İle Kullanımı",
             code: `<Alert type="warning" heightLimit>WARNING</Alert>`,
-            alertClass:
-              "flex gap-6 border-2 border-dashed border-yellow-500 p-[12px_15px] text-[12px]",
-            iconClass: "text-blue-500 text-lg",
-            label: `${"UYARI UYARI UYARI UYARI UYARI UYARI UYARI UYARI".repeat(
+            children: `${"UYARI UYARI UYARI UYARI UYARI UYARI UYARI UYARI".repeat(
               50
             )}`,
-            heightLimit: "true",
+            heightLimit: true,
           },
-        ].map(
-          (
-            { title, code, alertClass, label, iconClass, heightLimit },
-            index
-          ) => (
-            <div key={index} className="bg-gray-50 p-6 rounded-lg shadow">
-              <p className="mb-3 font-semibold text-gray-700">{title}</p>
-              <CopyBlock
-                text={code}
-                language="jsx"
-                showLineNumbers
-                theme={dracula}
-                wrapLines
-              />
-              <div
-                className={`${alertClass} mt-5 flex items-center ${
-                  heightLimit && "max-h-[100px] overflow-auto"
-                }`}
-              >
-                {<BsInfoCircleFill className={iconClass} />}
-                {label}
-              </div>
+        ].map(({ title, code, children, heightLimit, type }, index) => (
+          <div key={index} className="bg-gray-50 p-6 rounded-lg shadow">
+            <p className="mb-3 font-semibold text-gray-700">{title}</p>
+            <CopyBlock
+              text={code}
+              language="jsx"
+              showLineNumbers
+              theme={dracula}
+              wrapLines
+            />
+            <div className="mt-5">
+              <Alert heightLimit={heightLimit} type={type}>
+                {children}
+              </Alert>
             </div>
-          )
-        )}
+          </div>
+        ))}
       </div>
     </div>
   );
