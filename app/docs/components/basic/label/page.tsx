@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
+import Label from "../../../../../components/tk-ui/Label";
 
 const LabelPage: React.FC = () => {
   const [hydrated, setHydrated] = useState(false);
@@ -42,10 +43,9 @@ const LabelPage: React.FC = () => {
           {
             title: "Varsayılan Kullanım",
             code: `<Label>E-mail</Label>`,
-            labelClass: "text-black mt-5",
             label: "E-mail",
           },
-        ].map(({ title, code, label, labelClass }, index) => (
+        ].map(({ title, code, label }, index) => (
           <div key={index} className="bg-gray-50 p-6 rounded-lg shadow">
             <p className="mb-3 font-semibold text-gray-700">{title}</p>
             <CopyBlock
@@ -55,7 +55,9 @@ const LabelPage: React.FC = () => {
               theme={dracula}
               wrapLines
             />
-            <div className={labelClass}>{label}</div>
+            <div className="mt-5">
+              <Label>{label}</Label>
+            </div>
           </div>
         ))}
       </div>
