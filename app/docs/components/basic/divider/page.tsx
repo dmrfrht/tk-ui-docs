@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { BsAirplaneFill } from "react-icons/bs";
+import Divider from "../../../../../components/tk-ui/Divider";
 
 const DividerPage: React.FC = () => {
   const [hydrated, setHydrated] = useState(false);
@@ -45,26 +46,20 @@ const DividerPage: React.FC = () => {
           {
             title: "Varsayılan Kullanım",
             code: `<Divider />`,
-            dividerClass: "flex items-center mt-5",
-            lineClass:"flex-grow h-[2px] w-[1px] bg-[#eaf2fc] my-5",
             orientation: "horizontal",
           },
           {
             title: "İkon ile Kullanım",
             code: `<Divider icon={<BsAirplaneFill />} />`,
-            dividerClass: "flex items-center mt-5",
-            lineClass:"flex-grow h-[2px] w-[1px] bg-[#eaf2fc] my-5",
             orientation: "horizontal",
             icon: <BsAirplaneFill />,
           },
           {
             title: "Dikey Kullanım",
             code: `<Divider orientation="vertical" />`,
-            dividerClass: "flex flex-col items-center mt-5",
-            lineClass:"flex-col flex-grow h-14 w-[1px] bg-[#eaf2fc]",
             orientation: "vertical",
           },
-        ].map(({ title, code, dividerClass, lineClass, orientation, icon }, index) => (
+        ].map(({ title, code, orientation, icon }, index) => (
           <div key={index} className="bg-gray-50 p-6 rounded-lg shadow">
             <p className="mb-3 font-semibold text-gray-700">{title}</p>
             <CopyBlock
@@ -74,18 +69,7 @@ const DividerPage: React.FC = () => {
               theme={dracula}
               wrapLines
             />
-            <div className={dividerClass}>
-              {orientation === "horizontal" && (
-                <>
-                  <div className={lineClass}></div>
-                  {icon && <div>{icon}</div>}
-                  <div className={lineClass}></div>
-                </>
-              )}
-              {orientation === 'vertical' && 
-                <div className={`${lineClass} mx-[20px] my-0`}></div>} 
-              
-            </div>
+            <Divider orientation={orientation} icon={icon} />
           </div>
         ))}
       </div>

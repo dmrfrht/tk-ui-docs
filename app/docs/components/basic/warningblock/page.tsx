@@ -2,10 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
-import {
-  BsChevronDoubleRight,
-  BsInfoCircleFill,
-} from "react-icons/bs";
+import WarningBlock from "../../../../../components/tk-ui/WarningBlock";
 
 const WarningBlockPage: React.FC = () => {
   const [hydrated, setHydrated] = useState(false);
@@ -58,31 +55,28 @@ adına bagaj düzenlemelerini inceleyiniz." />`,
             warning:
               "Bagaj hakları ile ilgili sorunları önlemek adına bagaj düzenlemelerini inceleyiniz.",
             buttonText: "Daha fazla bilgi",
+            onClick: () => {},
           },
-        ].map(
-          ({ title, code, warningBlockClass, warning, buttonText }, index) => (
-            <div key={index} className="bg-gray-50 p-6 rounded-lg shadow">
-              <p className="mb-3 font-semibold text-gray-700">{title}</p>
-              <CopyBlock
-                text={code}
-                language="jsx"
-                showLineNumbers
-                theme={dracula}
-                wrapLines
+        ].map(({ title, code, warning, buttonText, onClick }, index) => (
+          <div key={index} className="bg-gray-50 p-6 rounded-lg shadow">
+            <p className="mb-3 font-semibold text-gray-700">{title}</p>
+            <CopyBlock
+              text={code}
+              language="jsx"
+              showLineNumbers
+              theme={dracula}
+              wrapLines
+            />
+
+            <div className="mt-5">
+              <WarningBlock
+                warning={warning}
+                buttonText={buttonText}
+                onClick={onClick}
               />
-              <div className={warningBlockClass}>
-                <BsInfoCircleFill className="text-[20px] flex-shrink-0" />
-                <div className="">
-                  {warning}
-                  <button className="flex items-center gap-[8px] text-red-500 cursor-pointer hover:text-red-700">
-                    {buttonText}
-                    <BsChevronDoubleRight className="stroke-[1]" />
-                  </button>
-                </div>
-              </div>
             </div>
-          )
-        )}
+          </div>
+        ))}
       </div>
     </div>
   );

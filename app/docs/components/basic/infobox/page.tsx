@@ -3,11 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
 import {
-  BsAirplaneFill,
-  BsExclamationTriangleFill,
-  BsInfoCircleFill,
-  BsXCircleFill,
+  BsAirplaneFill
 } from "react-icons/bs";
+import InfoBox from "../../../../../components/tk-ui/InfoBox";
 
 const InfoBoxPage: React.FC = () => {
   const [hydrated, setHydrated] = useState(false);
@@ -50,34 +48,28 @@ const InfoBoxPage: React.FC = () => {
           {
             title: "Varsayılan (Bilgilendirme) Kullanım",
             code: `<InfoBox variant="notification">Bilgi</InfoBox>`,
-            infoBoxClass: "border-blue-500",
-            icon: <BsInfoCircleFill className="mr-[7px] text-blue-500" />,
             label: "Bilgi",
+            variant: "notification",
           },
           {
             title: "Uyarı Kullanımı",
             code: `<InfoBox variant="warning">Uyarı</InfoBox>`,
-            infoBoxClass: "border-yellow-500",
-            icon: (
-              <BsExclamationTriangleFill className="mr-[7px] text-yellow-500" />
-            ),
             label: "Uyarı",
+            variant: "warning",
           },
           {
             title: "Hata Kullanımı",
             code: `<InfoBox variant="error">Hata</InfoBox>`,
-            infoBoxClass: "border-red-500",
-            icon: <BsXCircleFill className="mr-[7px] text-red-500" />,
             label: "Hata",
+            variant: "error",
           },
           {
             title: "Özel İkon Kullanımı",
             code: `<InfoBox icon={</BsAirplaneFill />}>Özel İkon</InfoBox>`,
-            infoBoxClass: "border-blue-500",
             icon: <BsAirplaneFill className="mr-[7px] text-blue-500" />,
             label: "Özel ikon",
           },
-        ].map(({ title, code, infoBoxClass, label, icon }, index) => (
+        ].map(({ title, code, label, icon, variant }, index) => (
           <div key={index} className="bg-gray-50 p-6 rounded-lg shadow">
             <p className="mb-3 font-semibold text-gray-700">{title}</p>
             <CopyBlock
@@ -87,11 +79,10 @@ const InfoBoxPage: React.FC = () => {
               theme={dracula}
               wrapLines
             />
-            <div
-              className={`${infoBoxClass} mt-5 flex items-center py-[12px] px-[10px] border-[3.008px] border-t-0 border-r-0 border-b-0`}
-            >
-              {icon}
-              {label}
+            <div className="mt-5">
+              <InfoBox icon={icon} variant={variant}>
+                {label}
+              </InfoBox>
             </div>
           </div>
         ))}

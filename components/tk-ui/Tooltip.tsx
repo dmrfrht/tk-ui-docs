@@ -11,6 +11,7 @@ export type TooltipPosition =
   | "top-left"
   | "bottom-right"
   | "bottom-left";
+
 export type TooltipColor = "dark" | "light";
 
 type TooltipProps = {
@@ -18,6 +19,7 @@ type TooltipProps = {
   color?: TooltipColor;
   position?: TooltipPosition;
   content?: React.ReactNode;
+  className?: string;
 };
 
 export const Tooltip: React.FC<TooltipProps> = ({
@@ -25,6 +27,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   color = "dark",
   position = "top",
   content,
+  className,
 }) => {
   const tooltip = useRef(null);
   const tooltipPosition = position;
@@ -141,7 +144,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
         tooltipPosition === "left" &&
           "right-full top-1/2 transform -translate-y-1/2 mr-3",
         tooltipPosition === "right" &&
-          "left-full top-1/2 transform -translate-y-1/2 ml-3"
+          "left-full top-1/2 transform -translate-y-1/2 ml-3",
+        className
       )}
     >
       {content}
