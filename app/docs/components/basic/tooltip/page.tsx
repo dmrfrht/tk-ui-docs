@@ -2,7 +2,7 @@
  
 import React, { useState, useEffect } from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
-import { Tooltip } from "../../../../../components/Tooltip";
+import { Tooltip } from "../../../../../components/tk-ui/Tooltip";
  
 const TooltipPage: React.FC = () => {
   const [hydrated, setHydrated] = useState(false);

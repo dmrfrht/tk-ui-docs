@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { generateUUID } from "../../../../../utils/uuidGenerator";
-import { Tooltip } from "../../../../../components/Tooltip";
+import { Tooltip } from "../../../../../components/tk-ui/Tooltip";
 
 const AvatarPage: React.FC = () => {
   const [hydrated, setHydrated] = useState(false);

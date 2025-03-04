@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
-import { BsExclamationTriangleFill } from "react-icons/bs";
+import InlineError from "../../../../../components/tk-ui/InlineError";
 
 const InlineErrorPage: React.FC = () => {
   const [hydrated, setHydrated] = useState(false);
@@ -47,7 +47,7 @@ const InlineErrorPage: React.FC = () => {
             iconClass: "text-red-500 text-primary text-sm flex-shrink-0",
             label: "Bir hata oluştu",
           },
-        ].map(({ title, code, label, inlineErrorClass, iconClass }, index) => (
+        ].map(({ title, code, label }, index) => (
           <div key={index} className="bg-gray-50 p-6 rounded-lg shadow">
             <p className="mb-3 font-semibold text-gray-700">{title}</p>
             <CopyBlock
@@ -57,9 +57,8 @@ const InlineErrorPage: React.FC = () => {
               theme={dracula}
               wrapLines
             />
-            <div className={`${inlineErrorClass} mt-5 flex items-center`}>
-              {<BsExclamationTriangleFill className={iconClass} />}
-              <small className="text-black text-xs">{label}</small>
+            <div className="mt-5">
+              <InlineError>{label}</InlineError>
             </div>
           </div>
         ))}
