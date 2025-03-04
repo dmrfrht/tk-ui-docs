@@ -11,6 +11,7 @@ export type TooltipPosition =
   | "top-left"
   | "bottom-right"
   | "bottom-left";
+
 export type TooltipColor = "dark" | "light";
 
 type TooltipProps = {
@@ -18,6 +19,7 @@ type TooltipProps = {
   color?: TooltipColor;
   position?: TooltipPosition;
   content?: React.ReactNode;
+  className?: string;
 };
 
 export const Tooltip: React.FC<TooltipProps> = ({
@@ -25,6 +27,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   color = "dark",
   position = "top",
   content,
+  className,
 }) => {
   const tooltip = useRef(null);
   const tooltipPosition = position;
@@ -130,18 +133,18 @@ export const Tooltip: React.FC<TooltipProps> = ({
     <div
       ref={tooltip}
       className={clsx(
-        "absolute max-w-[13.75rem] rounded-md p-2 text-sm font-light leading-4 pointer-events-none z-[9999]",
-        tooltipColor === "dark"
-          ? "bg-black text-white shadow-md"
-          : "bg-white text-black border border-gray-300",
-        tooltipPosition === "top" &&
-          "bottom-full left-1/2 transform -translate-x-1/2 mb-3",
-        tooltipPosition === "bottom" &&
-          "top-full left-1/2 transform -translate-x-1/2 mt-3",
-        tooltipPosition === "left" &&
-          "right-full top-1/2 transform -translate-y-1/2 mr-3",
-        tooltipPosition === "right" &&
-          "left-full top-1/2 transform -translate-y-1/2 ml-3"
+        ` "absolute max-w-[13.75rem] rounded-md p-2 text-sm font-light leading-4 pointer-events-none z-[9999]",
+       tooltipColor === "dark"
+         ? "bg-black text-white shadow-md"
+         : "bg-white text-black border border-gray-300",
+       tooltipPosition === "top" &&
+         "bottom-full left-1/2 transform -translate-x-1/2 mb-3",
+       tooltipPosition === "bottom" &&
+         "top-full left-1/2 transform -translate-x-1/2 mt-3",
+       tooltipPosition === "left" &&
+         "right-full top-1/2 transform -translate-y-1/2 mr-3",
+       tooltipPosition === "right" &&
+         "left-full top-1/2 transform -translate-y-1/2 ml-3", ${className}`
       )}
     >
       {content}

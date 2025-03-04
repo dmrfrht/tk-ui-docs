@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { BsInfoCircleFill } from "react-icons/bs";
-import { generateUUID } from "../../../../../utils/uuidGenerator";
-import { Tooltip } from "../../../../../components/tk-ui/Tooltip";
+import Avatar from "../../../../../components/tk-ui/Avatar";
 
 const AvatarPage: React.FC = () => {
   const [hydrated, setHydrated] = useState(false);
@@ -16,31 +15,6 @@ const AvatarPage: React.FC = () => {
   if (!hydrated) {
     return null;
   }
-
-  const variantClassnames = {
-    primary: "bg-red-500 text-white",
-    black: "bg-black text-white",
-    gray: "bg-gray-500",
-  };
-
-  const sizeStyle = (size: number) => {
-    return { width: `${size}px`, height: `${size}px` };
-  };
-
-  const getShortNameFromTitle = (title) => {
-    const splitTitle = title.split(" ");
-    const firstLetter = splitTitle[0].charAt(0);
-    const lastLetter = splitTitle[splitTitle.length - 1].charAt(0);
-    let fullLetter: string;
-
-    if (splitTitle.length > 1) {
-      fullLetter = firstLetter + lastLetter;
-    } else {
-      fullLetter = firstLetter;
-    }
-
-    return fullLetter;
-  };
 
   return (
     <div className="p-6 max-w-3xl mx-auto bg-white rounded-lg shadow-md">
@@ -84,7 +58,7 @@ showShortName
 size={50}
 subTitle="Lorem ipsum dolor sit amet"
 title="Türk Hava Yolları"
-          />`,
+/>`,
             title: "Türk Hava Yolları",
             subTitle: "Lorem ipsum dolor sit amet",
             size: 50,
@@ -95,7 +69,6 @@ title="Türk Hava Yolları"
               "https://cdn.turkishairlines.com/m/46ad4755d29da9d3/original/Turkish-Airlines-Paris-Flights.jpg",
             showShortName: true,
             variant: "gray",
-            avatarId: "1",
             tooltipPagePosition: "top",
           },
         ].map(
@@ -112,7 +85,6 @@ title="Türk Hava Yolları"
               infoIcon,
               showShortName = false,
               imgSource,
-              avatarId = generateUUID(),
               tooltipPagePosition,
             },
             index
@@ -126,56 +98,10 @@ title="Türk Hava Yolları"
                 theme={dracula}
                 wrapLines
               />
-              <div
-                className={`mt-4 flex inline-flex justify-center items-center ${
-                  layout === "vertical" ? "flex-col" : "flex-row"
-                }`}
-              >
-                <div
-                  className={`inline-flex items-center justify-center rounded-full overflow-hidden relative ${variantClassnames[variant]}`}
-                  style={sizeStyle(size)}
-                >
-                  {imgSource && (
-                    <img
-                      src={imgSource}
-                      alt="avatar"
-                      className={`w-full h-full object-cover`}
-                    />
-                  )}
-                  {showShortName && (
-                    <span className="absolute">
-                      {getShortNameFromTitle(title)}
-                    </span>
-                  )}
-                </div>
-                <div
-                  className={`${
-                    layout === "vertical"
-                      ? "mt-[6px] items-center"
-                      : "ml-1 items-center"
-                  } flex flex-col`}
-                >
-                  <div className="inline-flex items-center font-bold text-[14px] leading-6">
-                    <span className="ml-1 cursor-pointer">{title}</span>
-                    {infoIcon && (
-                      <span
-                        data-tooltip={`${avatarId}-avatar`}
-                        className="ml-1"
-                      >
-                        {infoIcon}
-                      </span>
-                    )}
-                    {infoContent && (
-                      <Tooltip
-                        id={`${avatarId}-avatar`}
-                        content={infoContent}
-                        position={tooltipPagePosition}
-                      />
-                    )}
-                  </div>
-                  <div className="text-[12px]">{subTitle}</div>
-                </div>
-              </div>
+              <Avatar title={title} subTitle={subTitle} size={size} variant={variant}
+              layout={layout} infoContent={infoContent} infoIcon={infoIcon} showShortName={showShortName}
+              imgSource={imgSource} tooltipPagePosition={tooltipPagePosition}
+              />
             </div>
           )
         )}
